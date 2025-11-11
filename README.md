@@ -22,3 +22,30 @@ aca deberas hacer una modificacion de esta variable para que coincida con el nom
 ´´´ json
 "serve:ssr:pepito": "node dist/pepito/server/server.mjs",
 ´´´
+
+4) al final del archivo veras un apartado de build como este:
+
+´´´json
+  "build": {
+    "appId": "garbi.ejemplo",
+    "productName": "ejemplo",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "files": [
+      "**/*",
+      "dist/ejemplo/browser/**" 
+    ]
+  }
+}
+´´´
+aca deberas cambiar el nombre de garbi por tu nombre de desarrollador. y el nombre ejemplo para el nombre de tu aplicacion. de querer hacer algunas modificaciones, te explico para que funciona cada una de estas cosas:
+
+
+5) por ultimo tiraremos estos dos comandos en la terminal posicionados en la raiz del proyecto
+
+npm install --save-dev electron
+npm install --save-dev electron-builder 
+
+
+
