@@ -1,51 +1,129 @@
-esta es una explicacion de como usar este repositorio para tus propios proyectos de angular que ademas incluyen electron, para que de manera mas rapida puedas ahorrarte el proceso (corto) pero tedioso de hacerlo en cada proyecto que quieres usar estas tecnologias.
+# Angular + Electron Template
+
+Este repositorio sirve como punto de partida para crear aplicaciones **Angular** que integren **Electron**, ahorrando el proceso inicial de configuración cada vez que comiences un nuevo proyecto.
 
 ---
-1) lo primero es que tienes que bajar este repositorio o usarlo como template en tu cuenta de git.
-2) una vez lo tengas en local deberas ir a (poner la direccion) [package.json](/package.json) y mirar dentro de las primeras variables, veras algo como esto, modificalo a tu gusto
 
-´´´ json
+## 1. Clonar o usar como plantilla
+
+Puedes descargar este repositorio o usarlo como *template* directamente desde tu cuenta de GitHub.
+
+Una vez lo tengas en tu equipo local, abre el proyecto y localiza el archivo [`package.json`](./package.json).
+
+
+
+---
+
+## 2. Configurar la información del proyecto
+
+Dentro del archivo `package.json`, verás las primeras variables del proyecto. Modifícalas según tu aplicación:
+
+```json
 "name": "ejemplo",
 "main": "main.js",
 "version": "1.0",
 "author": "garbi.dev",
-"description": "ejemplo de descripcion",
-´´´
+"description": "ejemplo de descripcion"
+````
 
-3) luego deberas fijarte en el apartado de "scripts" que encontraras una variable como esta
-´´´ json
-   "serve:ssr:angular-electron-template": "node dist/angular-electron-template/server/server.mjs",
-´´´
+Reemplaza estos valores por el nombre, versión, autor y descripción de tu propio proyecto.
 
-aca deberas hacer una modificacion de esta variable para que coincida con el nombre de tu proyecto. por ejemplo si tu proyecto se llama "pepito" deberas modificar donde dice "angular-electron-template" y remplazarlo con "pepito", de esta manera:
+---
 
-´´´ json
+## 3. Actualizar el nombre del proyecto para SSR
+
+Dentro del mismo archivo, en la sección de **scripts**, encontrarás una línea similar a la siguiente:
+
+```json
+"serve:ssr:angular-electron-template": "node dist/angular-electron-template/server/server.mjs",
+```
+
+Debes modificar el nombre para que coincida con el de tu proyecto Angular.
+Por ejemplo, si tu proyecto se llama **pepito**, cámbialo así:
+
+```json
 "serve:ssr:pepito": "node dist/pepito/server/server.mjs",
-´´´
+```
 
-4) al final del archivo veras un apartado de build como este:
+Esto asegura que Angular Universal (SSR) apunte correctamente a la carpeta generada por tu build.
 
-´´´json
-  "build": {
-    "appId": "garbi.ejemplo",
-    "productName": "ejemplo",
-    "mac": {
-      "category": "public.app-category.developer-tools"
-    },
-    "files": [
-      "**/*",
-      "dist/ejemplo/browser/**" 
-    ]
-  }
+---
+
+## 4. Configuración del apartado `build`
+
+Al final del `package.json`, encontrarás el bloque de configuración de **Electron Builder**:
+
+```json
+"build": {
+  "appId": "garbi.ejemplo",
+  "productName": "ejemplo",
+  "mac": {
+    "category": "public.app-category.developer-tools"
+  },
+  "files": [
+    "**/*",
+    "dist/ejemplo/browser/**"
+  ]
 }
-´´´
-aca deberas cambiar el nombre de garbi por tu nombre de desarrollador. y el nombre ejemplo para el nombre de tu aplicacion. de querer hacer algunas modificaciones, te explico para que funciona cada una de estas cosas:
+```
 
+Deberás ajustar los siguientes valores:
 
-5) por ultimo tiraremos estos dos comandos en la terminal posicionados en la raiz del proyecto
+* **appId** → Identificador único de tu aplicación.
+  Usa el formato de dominio invertido, por ejemplo:
+  `"appId": "com.tunombre.pepito"`
 
+* **productName** → Nombre que se mostrará en el instalador y en la aplicación.
+  `"productName": "Pepito"`
+
+* **files** → Asegúrate de que la ruta dentro de `dist/` coincida con el nombre de tu proyecto Angular.
+  Por ejemplo: `"dist/pepito/browser/**"`
+
+---
+
+## 5. Instalar dependencias de Electron
+
+Por último, instala las dependencias necesarias ejecutando los siguientes comandos en la raíz del proyecto:
+
+```bash
 npm install --save-dev electron
-npm install --save-dev electron-builder 
+npm install --save-dev electron-builder
+```
 
+---
+
+## 6. Construcción y ejecución
+
+* Para ejecutar el proyecto en modo desarrollo con Angular:
+
+  ```bash
+  npm start
+  ```
+
+* Para ejecutar la versión Electron:
+
+  ```bash
+  npm run electron
+  ```
+
+* Para generar el instalador de escritorio (build final):
+
+  ```bash
+  npm run dist
+  ```
+
+---
+
+## 7. Notas adicionales
+
+* Este proyecto incluye configuración básica para **SSR (Server Side Rendering)**, aunque no es obligatoria para ejecutar la app con Electron.
+* Si planeas renombrar el proyecto o crear nuevas variantes, recuerda actualizar el nombre del directorio dentro de `dist/`.
+
+---
+
+### Autor
+
+Desarrollado por **garbi.dev**
+Puedes usar este template libremente para tus propios proyectos de Angular + Electron.
 
 
