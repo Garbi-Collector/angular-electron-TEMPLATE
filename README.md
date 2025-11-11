@@ -45,6 +45,18 @@ Por ejemplo, si tu proyecto se llama **pepito**, cámbialo así:
 "serve:ssr:pepito": "node dist/pepito/server/server.mjs",
 ```
 
+al mismo tiempo que se cambia el nombre del proyecto tambien se debe modificar el [main.js](/main.js) en esta parte para que coincida la carpeta en donde va a buscar
+
+```js
+  mainWindow.loadURL(
+  url.format({
+    pathname: path.join(__dirname, `/dist/angular-electron-template/browser/index.html`),
+    protocol: "file:",
+    slashes: true
+  })
+);
+```
+
 Esto asegura que Angular Universal (SSR) apunte correctamente a la carpeta generada por tu build.
 
 ---
